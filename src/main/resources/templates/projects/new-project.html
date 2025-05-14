@@ -11,9 +11,8 @@
 		  </div>
 		  <div class="form-group">
 			  <select class="custom-select" th:field="${project.state}">
-				<option value="" disabled selected>— Choose State —</option>
 			    <option value="STARTED">Started</option>
-			    <option value="INPROGRESS">In Porgress</option>
+			    <option value="INPROGRESS">In Progress</option>
 			    <option value="COMPLETED">Completed</option>
 			  </select>
 		    </div>
@@ -21,6 +20,12 @@
 			  <label for="exampleFormControlTextarea1">Project Description:</label>
 			  <textarea th:field="${project.description}" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 			</div>
+			<div class="form-group">
+			    <label for="exampleFormControlSelect2">Select Employees:</label>
+			    <select multiple class="form-control" id="exampleFormControlSelect2" th:field="*{employees}">
+			      <option th:each = "employee: ${allEmployees}" th:value="${employee.employeeId}" th:text="${employee.firstName}">1</option>
+			    </select>
+			  </div>
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
