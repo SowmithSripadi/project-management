@@ -584,3 +584,9 @@ create global temporary table HTE_employee(rn_ integer not null, employee_id big
 2025-05-14 00:03:22.590142-04:00 jdbc[55]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_PROJECT" already exists; SQL statement:
 create global temporary table HTE_project(rn_ integer not null, project_id bigint, description varchar(255), name varchar(255), state varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-03 12:37:31.537601-04:00 jdbc[34]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_EMPLOYEE" already exists; SQL statement:
+create global temporary table HTE_employee(rn_ integer not null, employee_id bigint, project_id bigint, email varchar(255), first_name varchar(255), last_name varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-03 12:37:31.541354-04:00 jdbc[34]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_PROJECT" already exists; SQL statement:
+create global temporary table HTE_project(rn_ integer not null, project_id bigint, description varchar(255), name varchar(255), state varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
