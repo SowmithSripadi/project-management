@@ -4,7 +4,8 @@
 <nav th:replace ="layouts :: navbar"></nav>
 <body>		
 	<div class="container mt-4">
-	<div class="row">
+	<div class="row align-items-center">
+	<div class="col-md-8">
 	<div th:fragment="ProjectsView" class="">
 	<a th:href="@{/projects/new}" class="btn btn-secondary btn-sm mb-3">New Project</a>
 	<h4> Current Projects </h4>
@@ -32,11 +33,12 @@
 	</table>
 	
 	</div>
-	<div class="col-md-4">
-				<canvas id="myPieChart" height="50" width="50"></canvas>
-			</div>
 	</div>
-	<div th:fragment="EmployeesView" class="container mt-4">
+	<div class="col-md-4">
+	  <canvas id="myPieChart" ></canvas>
+	</div>
+	</div>
+	<div th:fragment="EmployeesView" class="mt-4">
 		<a th:href="@{/employees/new}" class="btn btn-secondary btn-sm mb-3">New Employee</a>
 		<h4> Current Employees </h4>
 		<table class="table table-bordered table-striped">
@@ -45,6 +47,7 @@
 					<th>Employee FirstName</th>
 					<th>Employee LastName</th>
 					<th>Employee Email ID</th>
+					<th>Employee projects</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,6 +55,13 @@
 					<td th:text="${anEmployee.firstName}"></td>
 					<td th:text="${anEmployee.lastName}"></td>
 					<td th:text="${anEmployee.email}"></td>
+					<td>
+						<span th:if="${#lists.isEmpty(anEmployee.projects)}">NA</span>
+						<span th:unless="${#lists.isEmpty(anEmployee.projects)}" th:each="proj, iterStat : ${anEmployee.projects}">
+						<span th:text="${proj.name}"></span>
+						<span th:if="${!iterStat.last}">, </span>
+						</span>
+					</td>
 				</tr>
 			</tbody>
 		</table>
