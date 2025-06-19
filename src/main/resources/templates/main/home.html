@@ -13,7 +13,7 @@
 		<thead class="thead-dark">
 			<tr>
 				<th>Project name</th>
-				<th>Project Stage</th>
+				<th>Project State</th>
 				<th>Project Employees</th>
 			</tr>
 		</thead>
@@ -36,6 +36,9 @@
 	</div>
 	<div class="col-md-4">
 	  <canvas id="myPieChart" ></canvas>
+	  <script>
+		var chartData = "[[${projectStatusesCnt}]]"
+	  </script>
 	</div>
 	</div>
 	<div th:fragment="EmployeesView" class="mt-4">
@@ -46,22 +49,14 @@
 				<tr>
 					<th>Employee FirstName</th>
 					<th>Employee LastName</th>
-					<th>Employee Email ID</th>
-					<th>Employee projects</th>
+					<th>Employee Project Count</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="anEmployee : ${employees}">
-					<td th:text="${anEmployee.firstName}"></td>
-					<td th:text="${anEmployee.lastName}"></td>
-					<td th:text="${anEmployee.email}"></td>
-					<td>
-						<span th:if="${#lists.isEmpty(anEmployee.projects)}">NA</span>
-						<span th:unless="${#lists.isEmpty(anEmployee.projects)}" th:each="proj, iterStat : ${anEmployee.projects}">
-						<span th:text="${proj.name}"></span>
-						<span th:if="${!iterStat.last}">, </span>
-						</span>
-					</td>
+				<tr th:each="aEmployeeProjectCnt : ${employeesListProjectsCnt}">
+					<td th:text="${aEmployeeProjectCnt.firstName}"></td>
+					<td th:text="${aEmployeeProjectCnt.lastName}"></td>
+					<td th:text="${aEmployeeProjectCnt.projectCount}"></td>
 				</tr>
 			</tbody>
 		</table>
