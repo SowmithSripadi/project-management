@@ -11,13 +11,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Employee {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long employeeId;
+    @Id
+    @SequenceGenerator(
+        name = "employee_seq",           // logical name
+        sequenceName = "employee_seq",   // actual DB sequence
+        allocationSize = 1               // MUST match your DB’s INCREMENT BY 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "employee_seq"
+    )
+    private long employeeId;
 	private String firstName;
 	private String lastName;
 	private String email;

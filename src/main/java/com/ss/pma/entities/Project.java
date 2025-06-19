@@ -11,12 +11,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Project {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @SequenceGenerator(
+        name = "project_seq",           // logical name
+        sequenceName = "project_seq",   // actual DB sequence
+        allocationSize = 1               // MUST match your DB’s INCREMENT BY 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "project_seq"
+    )
 	private long projectId;
 	private String name;
 	private String state; //started, inprogress, completed.
