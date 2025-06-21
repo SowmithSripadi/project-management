@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ss.pma.dao.EmployeeRepository;
 import com.ss.pma.dao.ProjectRepository;
+import com.ss.pma.dto.EmployeeProject;
 import com.ss.pma.entities.Employee;
 import com.ss.pma.entities.Project;
 
@@ -38,8 +39,8 @@ public class EmployeeController {
 	
 	@GetMapping
 	public String viewEmployees(Model model) {
-		List<Employee> employees =  empRepo.findAll();
-		model.addAttribute("employees", employees);
+		List<EmployeeProject> employeesListProjectsCnt =  empRepo.employeeProjects();
+		model.addAttribute("employeesListProjectsCnt", employeesListProjectsCnt);
 		return "employees/employeesView";
 	}
 	
